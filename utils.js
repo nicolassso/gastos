@@ -51,8 +51,10 @@ export function totalExpenses(totalSpentByCategories){
 
 export async function createFile(totalSpentByCategories, month){
     const monthData = {[month]:totalSpentByCategories}
-    const storedData = await JSON.parse(fs.readFileSync('./expensesData.json', 'utf8'))
-    const initialData = storedData || [];
+    const storedDataString = await fs.readFileSync('./expensesData.json', 'utf8')
+    const isEmptyData = storedDataString === ''
+    const storedData = isEmptyData ? [] : JSON.parse(storedDataString)
+    const initialData =  storedData;
 
     initialData.push(monthData)
 
