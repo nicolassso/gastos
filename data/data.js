@@ -4,7 +4,7 @@ export let expenses = {
         bail: 0
     },
     debt:{
-        paying: 0,
+        paid: 0,
         remaining: {
             mum: 0,
             vic: 0,

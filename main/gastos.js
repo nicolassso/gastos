@@ -1,5 +1,35 @@
 import {expenses} from '../data/data.js'
-import {sumExpenses} from '../utils.js'
+import {sumExpenses, totalExpensesByCategory, totalExpenses} from '../utils.js'
+
+// RENT EXPENSES
+let rentData = {
+    category: 'rent',
+    key: 'rent',
+    quantity: [230],
+}
+
+sumExpenses(expenses, rentData.category, rentData.key, rentData.quantity);
+
+
+// BAIL EXPENSES
+let bailData = {
+    category: 'rent',
+    key: 'bail',
+    quantity: [230],
+}
+
+sumExpenses(expenses, bailData.category, bailData.key, bailData.quantity);
+
+
+// DEBT EXPENSES
+let debtData = {
+    category: 'debt',
+    key: 'paid',
+    quantity: [150],
+}
+
+sumExpenses(expenses, debtData.category, debtData.key, debtData.quantity);
+
 
 // RESTAURANT EXPENSES
 let restaurantData = {
@@ -112,4 +142,6 @@ sumExpenses(expenses, barberData.category, barberData.key, barberData.quantity);
 
 
 console.log(expenses)
+totalExpensesByCategory(expenses)
+totalExpenses(totalExpensesByCategory(expenses))
 
