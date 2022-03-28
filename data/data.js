@@ -1,3 +1,6 @@
+/**
+ * Template of the possible expenses to use on each new month
+ */
 export let expenses = {
     rent:{
         rent: 0,

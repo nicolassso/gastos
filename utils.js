@@ -1,5 +1,7 @@
 import * as fs from 'fs'
-// I will pass the name of whatever I am spending in, and and array of spent money
+/**
+ *  Pass the expenses template, the category of the expense, the key if any and the quantity of it.
+*/ 
 export function sumExpenses(expenses, category, key = {}, quantity){
 
     if(key){
@@ -8,7 +10,10 @@ export function sumExpenses(expenses, category, key = {}, quantity){
         expenses[category] =  quantity.reduce((preVal, currVal) => preVal + currVal, expenses[category])
     }
 }
-
+/**
+ * 
+ * Returns an object with the keys being the category of every possible expense, and the value being the sum of all the different keys within the category.
+ */
 export function totalExpensesByCategory(expenses){
     let totalSpentByCategories = {}
     const expensesArray = Object.entries(expenses);
@@ -35,33 +40,41 @@ export function totalExpensesByCategory(expenses){
     return totalSpentByCategories
 
 }
-
+/**
+ * Returns the total sum of all the different expenses.
+ */
 export function totalExpenses(totalSpentByCategories){
     const expensesArray = Object.values(totalSpentByCategories);
 
     const totalSpent = expensesArray.reduce((prev, curr) => prev + curr, 0)
 
-    console.log(totalSpentByCategories)
-
-    console.log(`You spent this month ${totalSpent.toFixed(2)}€`)
-
-
-
+    return totalSpent
 }
-
+/**
+ * It first reads the content of the JSON files of each month
+ * Then writes in the object returned from the totalExpensesByCategory() function.
+ */
 export async function createFile(totalSpentByCategories, month){
-    const monthData = {[month]:totalSpentByCategories}
-    const storedDataString = await fs.readFileSync('./expensesData.json', 'utf8')
-    const isEmptyData = storedDataString === ''
-    const storedData = isEmptyData ? [] : JSON.parse(storedDataString)
-    const initialData =  storedData;
+    const monthData = {[month]:totalSpentByCategories, ['total']: totalExpenses(totalSpentByCategories)}
+    const storedDataString = await fs.readFileSync(`../data/months/${month}/${month}.json`, 'utf8')
+
+    
+    const initialData =  isEmptyData(storedDataString);
 
     initialData.push(monthData)
 
     const finalData = JSON.stringify(initialData)
 
 
-    fs.writeFile('expensesData.json', finalData, (err) => {
+    fs.writeFile(`../data/months/${month}/${month}.json`, finalData, (err) => {
         if (err) throw err;
     })
+}
+/**
+ * Determines whether the string passed from the JSON files is empty or not, returning an empty array if it is empty, or the object format of the content.
+ */
+export function isEmptyData(storedDataString){
+    const storedData = storedDataString === '' ? [] : JSON.parse(storedDataString)
+
+    return storedData;
 }
