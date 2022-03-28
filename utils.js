@@ -49,10 +49,17 @@ export function totalExpenses(totalSpentByCategories){
 
 }
 
-export function createFile(totalSpentByCategories){
-    let data = JSON.stringify(totalSpentByCategories)
-  
-    fs.writeFile('expensesData.json', data, (err) => {
+export async function createFile(totalSpentByCategories, month){
+    const monthData = {[month]:totalSpentByCategories}
+    const storedData = await JSON.parse(fs.readFileSync('./expensesData.json', 'utf8'))
+    const initialData = storedData || [];
+
+    initialData.push(monthData)
+
+    const finalData = JSON.stringify(initialData)
+
+
+    fs.writeFile('expensesData.json', finalData, (err) => {
         if (err) throw err;
     })
 }

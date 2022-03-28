@@ -7,6 +7,6 @@ initialEntriesArray.forEach(e => sumExpenses(expenses, e.category, e.key, e.quan
 
 totalExpenses(totalExpensesByCategory(expenses))
 
-createFile(totalExpensesByCategory(expenses))
+createFile(totalExpensesByCategory(expenses), 'march')
 
-console.log(expenses)
+// console.log(expenses)
