@@ -1,4 +1,4 @@
-
+import * as fs from 'fs'
 // I will pass the name of whatever I am spending in, and and array of spent money
 export function sumExpenses(expenses, category, key = {}, quantity){
 
@@ -31,7 +31,6 @@ export function totalExpensesByCategory(expenses){
 
     })
 
-    console.log(totalSpentByCategories)
 
     return totalSpentByCategories
 
@@ -42,5 +41,18 @@ export function totalExpenses(totalSpentByCategories){
 
     const totalSpent = expensesArray.reduce((prev, curr) => prev + curr, 0)
 
-    console.log(totalSpent)
+    console.log(totalSpentByCategories)
+
+    console.log(`You spent this month ${totalSpent.toFixed(2)}€`)
+
+
+
+}
+
+export function createFile(totalSpentByCategories){
+    let data = JSON.stringify(totalSpentByCategories)
+  
+    fs.writeFile('expensesData.json', data, (err) => {
+        if (err) throw err;
+    })
 }

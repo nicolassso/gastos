@@ -1,5 +1,5 @@
 import {expenses} from '../data/data.js'
-import {sumExpenses, totalExpensesByCategory, totalExpenses} from '../utils.js'
+import {sumExpenses, totalExpensesByCategory, totalExpenses, createFile} from '../utils.js'
 
 // RENT EXPENSES
 let rentData = {
@@ -142,6 +142,6 @@ sumExpenses(expenses, barberData.category, barberData.key, barberData.quantity);
 
 
 console.log(expenses)
-totalExpensesByCategory(expenses)
 totalExpenses(totalExpensesByCategory(expenses))
+createFile(totalExpensesByCategory(expenses))
 
