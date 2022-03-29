@@ -78,9 +78,9 @@ export async function createFile(totalSpentByCategories, month) {
         'utf8'
     );
 
-    const initialData = isEmptyData(storedDataString);
-
+    let initialData = storedData(storedDataString);
     initialData.push(monthData);
+    initialData = sanitizeData(storedDataString, initialData);
 
     const finalData = JSON.stringify(initialData);
 
@@ -91,9 +91,19 @@ export async function createFile(totalSpentByCategories, month) {
 /**
  * Determines whether the string passed from the JSON files is empty or not, returning an empty array if it is empty, or the object format of the content.
  */
-export function isEmptyData(storedDataString) {
-    const storedData =
-        storedDataString === '' ? [] : JSON.parse(storedDataString);
-
-    return storedData;
+export function storedData(storedDataString) {
+    if (storedDataString === '') {
+        return [];
+    }
+    return JSON.parse(storedDataString);
+}
+/**
+ * It receives the data stored in the JSON file, and the new data from the entries file. It first checks if the stored data is empty, returning the new data.
+ * If the stored data has records, it updates to the new data, avoiding creating new objects every time the program runs
+ */
+function sanitizeData(storedDataString, newData) {
+    if (storedDataString === '') {
+        return newData;
+    }
+    return [newData[1]];
 }
