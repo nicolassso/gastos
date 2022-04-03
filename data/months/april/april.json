@@ -2,14 +2,14 @@
     {
         "April": {
             "rent": 720,
-            "debt": 150,
-            "food": 231.95,
-            "travel": 101.72,
-            "cash": 20,
-            "gym": 33,
-            "sex": 12.9,
-            "beauty": 10
+            "debt": 0,
+            "food": 66.2,
+            "travel": 20,
+            "cash": 0,
+            "gym": 0,
+            "other": 35.24,
+            "home": 11.15
         },
-        "total": 1279.5700000000002
+        "total": 852.59
     }
 ]

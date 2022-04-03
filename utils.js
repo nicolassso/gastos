@@ -1,19 +1,31 @@
 import * as fs from 'fs';
 /**
- *  Pass the expenses template, the category of the expense, the key if any and the quantity of it.
+ * Return an object from the entries file, summing all the keys into the same category.
+ * Finds is the category is already existing in the object, if it is existing, it adds the new key to the category.
  */
-export function sumExpenses(expenses, category, key = {}, quantity) {
-    if (key) {
-        expenses[category][key] = quantity.reduce(
-            (preVal, currVal) => preVal + currVal,
-            expenses[category][key]
-        );
-    } else {
-        expenses[category] = quantity.reduce(
-            (preVal, currVal) => preVal + currVal,
-            expenses[category]
-        );
-    }
+export function entriesToObject(CURRENT_ENTRIES) {
+    let object = {};
+    let categories = [];
+    CURRENT_ENTRIES.forEach((e) => {
+        if (!categories.includes(e.category)) {
+            categories.push(e.category);
+            object = {
+                ...object,
+                [e.category]: e.key
+                    ? { [e.key]: e.quantity.reduce((a, b) => a + b, 0) }
+                    : 0,
+            };
+        } else {
+            object = {
+                ...object,
+                [e.category]: {
+                    ...object[e.category],
+                    [e.key]: e.quantity.reduce((a, b) => a + b, 0),
+                },
+            };
+        }
+    });
+    return object;
 }
 /**
  *
@@ -22,8 +34,7 @@ export function sumExpenses(expenses, category, key = {}, quantity) {
 export function totalExpensesByCategory(expenses) {
     let totalSpentByCategories = {};
     const expensesArray = Object.entries(expenses);
-
-    expensesArray.map((category) => {
+    expensesArray.forEach((category) => {
         const keysArray = Object.values(category[1]);
         const totalKeyExpenses = keysArray.reduce(
             (prevKey, currKey) => prevKey + currKey,
@@ -51,7 +62,6 @@ export function totalExpensesByCategory(expenses) {
             };
         }
     });
-
     return totalSpentByCategories;
 }
 /**
