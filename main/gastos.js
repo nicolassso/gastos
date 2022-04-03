@@ -9,10 +9,10 @@ import {
     totalExpenses,
     createFile,
 } from '../utils.js';
-import { MARCH_ENTRIES, APRIL_ENTRIES } from './entries.js';
+import { CURRENT_ENTRIES } from './entries.js';
 import { currentMonth } from './constants.js';
 
-APRIL_ENTRIES.forEach((e) =>
+CURRENT_ENTRIES.forEach((e) =>
     sumExpenses(expenses, e.category, e.key, e.quantity)
 );
 
