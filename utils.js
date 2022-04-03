@@ -13,7 +13,7 @@ export function entriesToObject(CURRENT_ENTRIES) {
                 ...object,
                 [e.category]: e.key
                     ? { [e.key]: e.quantity.reduce((a, b) => a + b, 0) }
-                    : 0,
+                    : e.quantity || 0,
             };
         } else {
             object = {

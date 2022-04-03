@@ -5,11 +5,11 @@
             "debt": 0,
             "food": 66.2,
             "travel": 20,
-            "cash": 0,
+            "cash": -6,
             "gym": 0,
             "other": 35.24,
             "home": 11.15
         },
-        "total": 852.59
+        "total": 846.59
     }
 ]
