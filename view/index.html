@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="index.css"
+            media="screen"
+        />
+        <title>Gastos</title>
+        <script type="text/javascript" src="../main/utils.js"></script>
+    </head>
+    <body>
+        <section class="section">
+            <div class="box">
+                <h1>March expenses</h1>
+                <iframe
+                    class="iframe"
+                    src="../data/months/march/march.json"
+                    frameborder="0"
+                ></iframe>
+                <div class="inputs">
+                    <input
+                        class="inputItem"
+                        id="marchCategory"
+                        type="text"
+                        placeholder="Category"
+                    />
+                    <input
+                        class="inputItem"
+                        id="marchKey"
+                        type="text"
+                        placeholder="Key"
+                    />
+                    <input
+                        class="inputItem"
+                        id="marchQuantity"
+                        type="number"
+                        placeholder="Quantity"
+                    />
+                </div>
+
+                <button
+                    id="marchButton"
+                    class="btn"
+                    onclick="handleClick(this)"
+                >
+                    Add new entry
+                </button>
+            </div>
+            <div class="box">
+                <h1>April expenses</h1>
+                <iframe
+                    class="iframe"
+                    src="../data/months/april/april.json"
+                    frameborder="0"
+                ></iframe>
+                <div class="inputs">
+                    <input
+                        class="inputItem"
+                        id="aprilCategory"
+                        type="text"
+                        placeholder="Category"
+                    />
+                    <input
+                        class="inputItem"
+                        id="aprilKey"
+                        type="text"
+                        placeholder="Key"
+                    />
+                    <input
+                        class="inputItem"
+                        id="aprilQuantity"
+                        type="number"
+                        placeholder="Quantity"
+                    />
+                </div>
+
+                <button
+                    id="aprilButton"
+                    class="btn"
+                    onclick="handleClick(this)"
+                >
+                    Add new entry
+                </button>
+            </div>
+        </section>
+        <script>
+            function handleClick(event) {
+                const inputItems = document.getElementsByClassName('inputItem');
+                for (let inputItem of inputItems) {
+                    if (inputItem.id.includes('april'))
+                        console.log(inputItem.id);
+                }
+            }
+        </script>
+    </body>
+</html>
