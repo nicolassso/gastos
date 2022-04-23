@@ -7,7 +7,7 @@ import {
     totalExpenses,
     createFile,
     entriesToObject,
-} from '../utils.js';
+} from './utils.js';
 import { CURRENT_ENTRIES } from './entries.js';
 import { currentMonth } from './constants.js';
 
